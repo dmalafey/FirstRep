@@ -1,36 +1,22 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import List from './List'
+import List from './List';
+import ItemData from './ItemData';
 
 class SearchField extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      list: ["video 1", "second video", "last video"]
+      list: [new ItemData("video 1","10-10-2010","3000","lalaalalalalalala"),
+              new ItemData("second video","10-10-2010","2000","ljjjjjtggggg"),
+              new ItemData("last video","10-10-2010","400","iiiyytttttty")]
     };
-
-    this.removeItem = this.removeItem.bind(this);
-  }
-
-
-  removeItem(item) {
-    const list = this.state.list.slice();
-    list.some((el, i) => {
-      if (el === item) {
-      list.splice(i, 1);
-        return true;
-      }
-    });
-    // Set state to list
-    this.setState({
-      list: list
-    });
   }
 
   render() {
     return (
       <div className="content">
-        <div className="container">
+        <div key = {1} className="container">
           <section className="section">
                         <List items={this.state.list} delete={this.removeItem} />
           </section>

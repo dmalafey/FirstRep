@@ -1,11 +1,13 @@
 import React from 'react';
+import Item  from  './Item';
+import ItemData from './ItemData';
 class List extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             filtered: []
         };
-        this.handleChange = this.handleChange.bind(this);
+
     }
 
     componentDidMount() {
@@ -20,12 +22,12 @@ class List extends React.Component {
     });
   }
 
-    handleChange(e) {
-    let currentList = [];
-    let newList = [];
-    if (e.target.value !== "") {
-    currentList = this.props.items;
-    newList = currentList.filter(item => {
+    handleChange = (e) => {
+      let currentList = [];
+      let newList = [];
+      if (e.target.value !== "") {
+        currentList = this.props.items;
+        newList = currentList.filter(item => {
                       const lc = item.toLowerCase();
                       const filter = e.target.value.toLowerCase();
                       return lc.includes(filter);
@@ -48,10 +50,7 @@ class List extends React.Component {
                         {this.state.filtered.map(item => (
                             <li key={item}>
                                 {item} &nbsp;
-                                <span
-                                    className="delete"
-                                    onClick={() => this.props.delete(item)}
-                                    />
+                                <Item itemData = {new ItemData("1","2","3","4")}/>
                             </li>
                         ))}
                     </ul>
